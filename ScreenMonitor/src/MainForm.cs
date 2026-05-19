@@ -291,7 +291,7 @@ public sealed class MainForm : Form
         var lbl = MakeLabel(label, x, y + 2, 160, 18);
         parent.Controls.Add(lbl);
 
-        track = new TrackBar
+        var t = new TrackBar
         {
             Left = x + 166, Top = y - 4,
             Width = parent.Width - x - 166 - 60,
@@ -301,14 +301,16 @@ public sealed class MainForm : Form
             AutoSize = false,
             Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top
         };
+        track = t;
 
-        valLabel = MakeLabel(initial.ToString(), track.Right + 4, y + 2, 50, 18);
-        valLabel.ForeColor = Color.CornflowerBlue;
+        var vl = MakeLabel(initial.ToString(), t.Right + 4, y + 2, 50, 18);
+        vl.ForeColor = Color.CornflowerBlue;
+        valLabel = vl;
 
-        track.ValueChanged += (_, _) =>
+        t.ValueChanged += (_, _) =>
         {
-            valLabel.Text = track.Value.ToString();
-            onChange(track.Value);
+            vl.Text = t.Value.ToString();
+            onChange(t.Value);
             _cfg.Save();
         };
 

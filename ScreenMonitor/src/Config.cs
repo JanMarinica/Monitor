@@ -51,7 +51,6 @@ public sealed class MonitorRegion
     [JsonIgnore]
     public bool IsSet => Width > 0 && Height > 0;
 
-    [JsonIgnore]
     public Rectangle ToRectangle() => new(X, Y, Width, Height);
 }
 
